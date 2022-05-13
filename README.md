@@ -24,7 +24,7 @@ In the sixth and final module you will use your skills in Big Data Analytics to 
 
 ## Architecture
 
-!(https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/Readings/data_platform_architecture.png)
+![](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/Readings/data_platform_architecture.png)
 
 SoftCart's online presence is primarily through its website, which customers access using a variety of devices like laptops, mobiles and tablets.
 
