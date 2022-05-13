@@ -21,3 +21,27 @@ In Module 4 you will create a Cognos data source that points to a data warehouse
 In Module 5 you will extract data from OLTP, NoSQL, and MongoDB databases into CSV format. You will then transform the OLTP data to suit the data warehouse schema, and then load the transformed data into the data warehouse. Finally, you will verify that the data is loaded properly.<br>
 
 In the sixth and final module you will use your skills in Big Data Analytics to create a Spark connection to the data warehouse, and then deploy a machine learning model on SparkML for making sales projections.<br>
+
+## Architecture
+
+!(https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/Readings/data_platform_architecture.png)
+
+SoftCart's online presence is primarily through its website, which customers access using a variety of devices like laptops, mobiles and tablets.
+
+All the catalog data of the products is stored in the MongoDB NoSQL server.
+
+All the transactional data like inventory and sales are stored in the MySQL database server.
+
+SoftCart's webserver is driven entirely by these two databases.
+
+Data is periodically extracted from these two databases and put into the staging data warehouse running on PostgreSQL.
+
+Production data warehouse is on the cloud instance of IBM DB2 server.
+
+BI teams connect to the IBM DB2 for operational dashboard creation. IBM Cognos Analytics is used to create dashboards.
+
+SoftCart uses Hadoop cluster as it big data platform where all the data collected for analytics purposes.
+
+Spark is used to analyse the data on the Hadoop cluster.
+
+To move data between OLTP, NoSQL and the dataware house ETL pipelines are used and these run on Apache Airflow.
