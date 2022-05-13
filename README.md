@@ -43,4 +43,16 @@ BI teams connect to the IBM DB2 for operational dashboard creation. IBM Cognos A
 SoftCart uses Hadoop cluster as it big data platform where all the data collected for analytics purposes.
 
 Spark is used to analyse the data on the Hadoop cluster.
+
 To move data between OLTP, NoSQL and the dataware house ETL pipelines are used and these run on Apache Airflow.
+
+## Module 1: 
+
+In this assignment, you will perform three exercises with multiple tasks. But before proceeding with the assignment, you will check the lab environment by starting the MySQL server and then downloading the file database from the given link. The first exercise requires you to design the schema for the OLTP database by storing data like row ID, product ID, customer ID, price, quantity, and time stamp of sale.
+
+In the second exercise, you will load this data into the OLTP database by importing the data in the downloaded file and then listing the tables in the database. You will also write a query to find out the count of records in the tables. In the final exercise, you will automate admin tasks by writing a query to list all the records created in the last 24 hours and then export them to a file. You will also write a bash script that exports records created in the last 24 hours into another file. After performing each task, you will take a screenshot of the command used, and the output obtained and give a name to the screenshot.
+
+#### Commands used to achieve these tasks:
+
+Starting mysql server on IBM's Theia (Developers' Network)
+`start_mysql`
