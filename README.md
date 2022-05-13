@@ -54,5 +54,18 @@ In the second exercise, you will load this data into the OLTP database by import
 
 #### Commands used to achieve these tasks:
 
-Starting mysql server on IBM's Theia (Developers' Network)
-`start_mysql`
+Starting mysql server on IBM's Theia (Developers' Network): `start_mysql`
+
+Creating a database: `create database sales;`
+
+Using this database: `use sales;`
+
+Creating a table with 5 columns: `create table sales_data (product_id INTEGER NOT NULL,
+customer_id INTEGER,
+price INTEGER,
+quantity INTEGER,
+timestamp DATETIME);`
+
+Creating an index: `create index ts on sales (timestamp);`
+
+Basic query: `select count(*) from sales_data;`
