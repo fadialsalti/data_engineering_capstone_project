@@ -69,3 +69,5 @@ timestamp DATETIME);`
 Creating an index: `create index ts on sales (timestamp);`
 
 Basic query: `select count(*) from sales_data;`
+
+Bash script to backup the data in a salesdata.sql file: datadump.sh in Module 1
