@@ -116,6 +116,7 @@ The design of the warehouse through the ERP tool in pgadmin is as following:
 ![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/warehouse2.png)
 
 After loading the data into db2 on IBM cloud, I solved the following tasks:
+
 Task 5 - Create a grouping sets query using the columns country, category, totalsales: 
 ```sql
 select country, category, sum(amount) as total_sales
