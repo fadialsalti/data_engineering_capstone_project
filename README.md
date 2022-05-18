@@ -93,3 +93,21 @@ Task 7. Write a query to find out the average screen size of smart phones: `db.e
 Task 8 - Export the fields _id, "type", "model", from the 'electronics' collection into a file named electronics.csv: 
 `mongoexport -u root -p MTkyOTMtZW5nZmFk --authenticationDatabase admin --db catalog --collection electronics --out electronics.csv --type=csv --fields _id,type,model`
 
+## Module 3
+
+Data Warehousing and Data Warehousing Reporting
+Assignment Overview
+
+The Assignment is split into two parts - Data Warehousing and Data Warehousing Reporting
+Data Warehousing
+
+In this first part of the assignment, you will perform a couple of exercises. But before proceeding with the assignment, you will create an instance of IBM DB2 on the cloud by following the instructions given in the link provided. If you have already created an instance in previous labs, you can continue using that to perform the exercises. The first exercise requires you to design a data warehouse. The e-commerce company has provided you with sample data. You will start your project by designing a Star Schema for the warehouse by identifying the columns for the various dimension and fact tables in the schema. You will name your database as softcart and then use the ERD design tool to design the table softcartDimDate using fields such as DateID, Month, Monthname, and so on. The company would like to have the ability to generate the report on a yearly, monthly, daily, and weekday basis.
+
+The following tasks require you to design the dimension tables softcartDimCategory, softcartDimCountry, and softcartFactSales using the ERD design tool. Finally, you will use the ERD design tool to design the required relationships (one-to-one, one-to-many, and so on) amongst the tables. After performing each task, you will take a screenshot of the entire ERD clearly showing all the field names, data types, and relationships amongst the tables.
+
+In the second exercise, you will load the data into the data warehouse. Your senior Data Engineer has reviewed your design and made a few improvements to your schema design. The data as per the improved schema is available at a link. You will download the data and restore it into a database named staging using the pgAdmin tool. After performing this task, you will take a screenshot showing the success of data restoration.
+Data Warehousing Reporting
+
+In this second part of the assignment, you will perform a couple of exercises. But before proceeding with the assignment, you will create an instance of IBM DB2 on the cloud by following the instructions given in the link provided. If you have already created an instance in previous labs, you can continue using that to perform the exercises. The first exercise requires you to load the data provided by the company into the tables in CSV format by performing a series of tasks. You will start by downloading the data from the links provided and then load that data into the DimDate table, DimCategory table, DimCountry table, and fact table FactSales. After loading the data, you will take a screenshot of the first five rows in each table and name the screenshot.
+
+In the second exercise, you will query the loaded data by creating a grouping sets query, rollup query, and cube query using the columns Orderid*, Category, and Price collected. Finally, you will create an MQT named Total_sales_per_country using the country and total sales columns. After performing each task, you will take a screenshot of the SQL and the output rows and then name the screenshot.
