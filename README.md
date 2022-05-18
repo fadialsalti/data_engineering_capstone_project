@@ -75,3 +75,21 @@ Bash script to backup the data in a salesdata.sql file: datadump.sh in Module 1
 ## Module 2:
 
 In this assignment, you will perform a series of tasks in a single exercise. But before proceeding with the assignment, you will install the 'mongoimport' and 'mongoexport' in the lab environment and then download the JavaScript Object Notation (JSON) file. The exercise requires you to first import the JSON file to the MongoDB server into a database and a collection (electronics), then list out all the databases and the collections in the database catalog. Next, you will list the first five documents in the collection, and then you will write a query to find the count of laptops, the number of mobile phones with a screen size of 6 inches, and the average screen size of smartphones. Finally, you will export the ID, type, and model fields from the collection into a Comma Separated Values (CSV) file. 
+
+Task 1 - Import 'catalog.json' into mongodb server into a database named 'catalog' and a collection named 'electronics': `mongoimport -u root -p MTk5NDQtZW5nZmFk --authenticationDatabase admin --db catalog --collection electronics --file catalog.json`
+
+Task 2 - List out all the databases: `show dbs;`
+
+Task 3 - List out all the collections in the database catalog: `use catalog; list collections;`
+
+Task 4 - Create an index on the field "type": `db.electronics.createIndex( { type: 1 } );`
+
+Task 5 - Write a query to find the count of laptops: `db.electronics.count({"type" : "laptop"});`
+
+Task 6 - Write a query to find the number of smart phones with screen size of 6 inches: `db.electronics.count({"type" : "smart phone", "screen size" : 6});`
+
+Task 7. Write a query to find out the average screen size of smart phones: `db.electronics.aggregate([{$group: {_id:"$type", average_screen_size: {$avg:"$screen size"} } }])`
+
+Task 8 - Export the fields _id, "type", "model", from the 'electronics' collection into a file named electronics.csv: 
+`mongoexport -u root -p MTkyOTMtZW5nZmFk --authenticationDatabase admin --db catalog --collection electronics --out electronics.csv --type=csv --fields _id,type,model`
+
