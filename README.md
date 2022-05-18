@@ -113,15 +113,39 @@ In this second part of the assignment, you will perform a couple of exercises. B
 In the second exercise, you will query the loaded data by creating a grouping sets query, rollup query, and cube query using the columns Orderid*, Category, and Price collected. Finally, you will create an MQT named Total_sales_per_country using the country and total sales columns. After performing each task, you will take a screenshot of the SQL and the output rows and then name the screenshot.
 
 The design of the warehouse through the ERP tool in pgadmin is as following:
-![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/warehouse.png)
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/warehouse2.png)
 
 After loading the data into db2 on IBM cloud, I solved the following tasks:
 Task 5 - Create a grouping sets query using the columns country, category, totalsales: 
-
+```sql
+select country, category, sum(amount) as total_sales
+from factsales
+left join dimcountry
+on factsales.countryid = dimcountry.countryid
+left join dimcategory
+on factsales.categoryid = dimcategory.categoryid
+group by grouping sets (country, category);
+```
 Task 6 - Create a rollup query using the columns year, country, and totalsales:
-
+```sql
+select country, year, sum(amount) as total_sales
+from factsales
+left join dimcountry
+on factsales.countryid = dimcountry.countryid
+left join dimdate
+on factsales.dateid = dimdate.dateid
+group by rollup (country, year);
+```
 Task 7 - Create a cube query using the columns year, country, and average sales:
-
+```sql
+select country, year, avg(amount) as average_sales
+from factsales
+left join dimcountry
+on factsales.countryid = dimcountry.countryid
+left join dimdate
+on factsales.dateid = dimdate.dateid
+group by cube (country, year);
+```
 Task 8 - Create an MQT named total_sales_per_country that has the columns country and total_sales:
 ```sql
 CREATE TABLE total_sales_per_country (country, total_sales) AS
