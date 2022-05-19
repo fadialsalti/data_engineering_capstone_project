@@ -164,3 +164,8 @@ refresh table total_sales_per_country;
 
 select * from total_sales_per_country;
 ```
+
+## Module 4
+In this assignment, you will perform a couple of exercises with multiple tasks. But before proceeding with the assignment, you will check the lab environment by ensuring that you have access to a cloud instance of the IBM DB2 database and Cognos. After you have access to the cloud instance, you will download the data from the link provided. The exercise requires you to load data into the data warehouse. You will first import data from the downloaded CSV file into a table and then list the first ten rows in the table.
+
+In the second exercise, you will create a data source in Cognos that points to the table in your IBM DB2 database. In the final exercise, you will create a dashboard by performing tasks such as creating a bar chart of Quarterly sales of mobile phones, a pie chart of category-wise sales of electronic goods, and a line chart of month-wise total sales for the year 2020. After performing each task, you will take a screenshot of the command used, and the output obtained and give a name to the screenshot.
