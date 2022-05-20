@@ -193,7 +193,7 @@ def get_last_rowid():
 Task 2 - Implement the function getlatestrecords(): This function must connect to the MySQL database and return all records later than the given last_rowid.
 ```python
 def get_latest_records(rowid):
-    SQL = "SELECT rowid from sales_data where rowid > {};".format(last_row_id)
+    SQL = "SELECT rowid FROM sales_data WHERE rowid > {};".format(last_row_id)
     cursor.execute(SQL)
     new_records = []
     for row in cursor.fetchall():
@@ -203,8 +203,8 @@ def get_latest_records(rowid):
 Task 3 - Implement the function insert_records(): This function must connect to the DB2 data warehouse and insert all the given records.
 ```python
 def insert_records(records):
-    SQL = "INSERT INTO sales_data (rowid,product_id,customer_id,quantity)  VALUES(?,?,?,?);"
-    to_insert = "SELECT * from sales_data WHERE rowid IN {};".format(tuple(new_records))
+    SQL = "INSERT INTO sales_data (rowid,product_id,customer_id,quantity) VALUES(?,?,?,?);"
+    to_insert = "SELECT * FROM sales_data WHERE rowid IN {};".format(tuple(new_records))
     cursor.execute(to_insert)
     for row in cursor.fetchall():
         stmt = ibm_db.prepare(conn, SQL)
