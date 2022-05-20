@@ -5,13 +5,13 @@ import mysql.connector
 import ibm_db
 
 # Connect to MySQL
-connection = mysql.connector.connect(user='root', password='MTYxNjctZW5nZmFk',host='127.0.0.1',port=3306, database='sales')
+connection = mysql.connector.connect(user='root', password='',host='127.0.0.1',port=3306, database='sales')
 cursor = connection.cursor()
 
 # Connect to DB2
 dsn_hostname = "21fecfd8-47b7-4937-840d-d791d0218660.bs2io90l08kqb1od8lcg.databases.appdomain.cloud" # e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
 dsn_uid = "cqs26198"       
-dsn_pwd = "g2QllJksZoNqDr7O"      
+dsn_pwd = ""      
 dsn_port = "31864"               
 dsn_database = "bludb"           
 dsn_driver = "{IBM DB2 ODBC DRIVER}"           
