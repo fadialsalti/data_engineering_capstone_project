@@ -182,3 +182,34 @@ In the second exercise, you will transform the OLTP data to suit the data wareho
 In this second part of the assignment, you will perform a couple of exercises, but before proceeding with the assignment, you will prepare the lab environment by starting the Apache Airflow and then downloading the dataset from the source (link provided) to the mentioned destination. In the first exercise, you will perform a series of tasks to create a DAG that runs daily. You will create a task that extracts the IP address field from the webserver log file and then saves it into a text file. The next task creation requires you to This task should filter out all the occurrences of ipaddress "198.46.149.143" from text file and save the output to a new text file. In the final task creation, you will load the data by archiving the transformed text file into a TAR file. Before moving on to the next exercise, you will define the task pipeline as per the given details.
 
 In the second exercise, you will get the DAG operational by saving the defined DAG into a PY file. Further, you will submit, unpause and then monitor the DAG runs for the Airflow console. After performing each task, take a screenshot of the command you used and its output, and name the screenshot.
+
+Task 1 - Implement the function getlastrowid(): This function must connect to the DB2 data warehouse and return the last rowid.
+```python
+def get_last_rowid():
+    SQL="SELECT MAX(rowid) FROM sales_data;"
+    stmt = ibm_db.exec_immediate(conn, SQL)
+    return ibm_db.fetch_tuple(stmt)[0]
+```
+Task 2 - Implement the function getlatestrecords(): This function must connect to the MySQL database and return all records later than the given last_rowid.
+```python
+def get_latest_records(rowid):
+    SQL = "SELECT rowid from sales_data where rowid > {};".format(last_row_id)
+    cursor.execute(SQL)
+    new_records = []
+    for row in cursor.fetchall():
+        new_records.append(row[0])
+    return new_records
+```
+Task 3 - Implement the function insert_records(): This function must connect to the DB2 data warehouse and insert all the given records.
+```python
+def insert_records(records):
+    SQL = "INSERT INTO sales_data (rowid,product_id,customer_id,quantity)  VALUES(?,?,?,?);"
+    to_insert = "SELECT * from sales_data WHERE rowid IN {};".format(tuple(new_records))
+    cursor.execute(to_insert)
+    for row in cursor.fetchall():
+        stmt = ibm_db.prepare(conn, SQL)
+        ibm_db.execute(stmt, row)
+```
+Task 4 - Test the data synchronization: Run the program automation.py and test if the synchronization is happening as expected.
+
+The script is available above as `automation.py`
