@@ -211,5 +211,6 @@ def insert_records(records):
         ibm_db.execute(stmt, row)
 ```
 Task 4 - Test the data synchronization: Run the program automation.py and test if the synchronization is happening as expected.
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/synchronization.jpg)
 
-The script is available above as `automation.py`
+The script is available in the repo as `automation.py`
