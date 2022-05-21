@@ -179,10 +179,6 @@ In this first part of the assignment, you will perform four exercises, but befor
 
 In the second exercise, you will transform the OLTP data to suit the data warehouse schema, read the OLTP data in the CSV format, add/edit/drop columns based on the data warehouse schema, and then save the transformed data into a new CSV file. In the third exercise, you will perform a series of tasks to transform the data. You will load the transformed data into the data warehouse, read the transformed data in the CSV format, load the transformed data into the data warehouse, and then, verify that the data is loaded properly. The final exercise requires you to automate the extraction of daily incremental data, and load yesterday's data into the data warehouse. You will download the python script from this link provided and use it as a template to write a python script that automatically loads yesterday's data from the production database into the data warehouse. After performing each task, take a screenshot of the command you used and its output, and name the screenshot.
 
-In this second part of the assignment, you will perform a couple of exercises, but before proceeding with the assignment, you will prepare the lab environment by starting the Apache Airflow and then downloading the dataset from the source (link provided) to the mentioned destination. In the first exercise, you will perform a series of tasks to create a DAG that runs daily. You will create a task that extracts the IP address field from the webserver log file and then saves it into a text file. The next task creation requires you to This task should filter out all the occurrences of ipaddress "198.46.149.143" from text file and save the output to a new text file. In the final task creation, you will load the data by archiving the transformed text file into a TAR file. Before moving on to the next exercise, you will define the task pipeline as per the given details.
-
-In the second exercise, you will get the DAG operational by saving the defined DAG into a PY file. Further, you will submit, unpause and then monitor the DAG runs for the Airflow console. After performing each task, take a screenshot of the command you used and its output, and name the screenshot.
-
 Task 1 - Implement the function getlastrowid(): This function must connect to the DB2 data warehouse and return the last rowid.
 ```python
 def get_last_rowid():
@@ -214,3 +210,76 @@ Task 4 - Test the data synchronization: Run the program automation.py and test i
 ![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/synchronization.jpg)
 
 The script is available in the repo as `automation.py`
+
+In this second part of the assignment, you will perform a couple of exercises, but before proceeding with the assignment, you will prepare the lab environment by starting the Apache Airflow and then downloading the dataset from the source (link provided) to the mentioned destination. In the first exercise, you will perform a series of tasks to create a DAG that runs daily. You will create a task that extracts the IP address field from the webserver log file and then saves it into a text file. The next task creation requires you to This task should filter out all the occurrences of ipaddress "198.46.149.143" from text file and save the output to a new text file. In the final task creation, you will load the data by archiving the transformed text file into a TAR file. Before moving on to the next exercise, you will define the task pipeline as per the given details.
+
+In the second exercise, you will get the DAG operational by saving the defined DAG into a PY file. Further, you will submit, unpause and then monitor the DAG runs for the Airflow console. After performing each task, take a screenshot of the command you used and its output, and name the screenshot.
+
+Task 1 - Define the DAG arguments.
+```python
+#defining DAG arguments
+default_args = {
+    'owner': 'Fadi Alsalti',
+    'start_date': days_ago(0),
+    'email': ['fadi.alsalti@gmail.com'],
+    'email_on_failure': True,
+    'email_on_retry': True,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+```
+Task 2 - Define the DAG: Create a DAG named process_web_log that runs daily.
+```python
+# define the DAG
+dag = DAG(
+    dag_id='process_web_log',
+    default_args=default_args,
+    description='Apache Airflow Assignment for Module 5',
+    schedule_interval=timedelta(days=1),
+)
+```
+Task 3 - Create a task to extract data. This task should extract the ipaddress field from the web server log file and save it into a file named extracted_data.txt
+```python
+# define the first task named extract_data
+extract_data = BashOperator(
+    task_id='extract_data',
+    bash_command='''wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/ETL/accesslog.txt;
+    cut -d" " -f1 accesslog.txt > extracted_data.txt''',
+    dag=dag,
+)
+```
+Task 4 - Create a task to transform the data in the txt file. This task should filter out all the occurrences of ipaddress "198.46.149.143" from extracted_data.txt and save the output to a file named transformed_data.txt.
+```python
+# define the sixth task named transform_data
+transform_data = BashOperator(
+    task_id='transform_data',
+    bash_command='grep -v 198.46.149.143 extracted_data.txt > transformed_data.txt',
+    dag=dag,
+)
+```
+Task 5 - Create a task to load the data. This task should archive the file transformed_data.txt into a tar file named weblog.tar.
+```python
+# define the sixth task named load_data
+load_data = BashOperator(
+    task_id='load_data',
+    bash_command='tar -czvf weblog.tar transformed_data.txt',
+    dag=dag,
+)
+```
+Task 6 - Define the task pipeline.
+```python
+# task pipeline
+extract_data >> transform_data >> load_data 
+```
+Task 7 - Submit the DAG.
+```bash
+cp process_web_log.py $AIRFLOW_HOME/dags
+```
+Task 8 - Unpause the DAG.
+```bash
+airflow dags unpause process_web_log
+```
+Task 9 - Monitor the DAG from Airflow console.
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/dag_runs.jpg)
+
+The script is available in the repo as `process_web_log.py`
