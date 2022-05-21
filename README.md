@@ -284,3 +284,6 @@ Task 9 - Monitor the DAG from Airflow console.
 ![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/dag_runs.jpg)
 
 The script is available in the repo as `process_web_log.py`
+
+## Module 6
+In this assignment, you will perform a number of tasks to analyse search terms on the e-commerce webserver. You will work in Watson Studio and within a Jupyter notebook to run your analysis against a CSV file containing the webserver data. You will load this file into a Spark dataframe and print the results of your queries against this dataset. You will then load a pretrained sales forecasting model and use this to predict the sales for 2023. After performing each task, take a screenshot of the code you used and its output, and name the screenshot.
