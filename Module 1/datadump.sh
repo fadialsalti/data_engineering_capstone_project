@@ -8,7 +8,6 @@ DATABASE_NAME='sales'
 
 echo "Backup started for database - ${DATABASE_NAME}"
 
-mysqldump -h 127.0.0.1 -u root -pODE4NC1lbmdmYWRp --databases sales 
 mysqldump -h ${MYSQL_HOST} \
 -P ${MYSQL_PORT} \
 -u ${MYSQL_USER} \
