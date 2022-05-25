@@ -113,7 +113,7 @@ In this second part of the assignment, you will perform a couple of exercises. B
 In the second exercise, you will query the loaded data by creating a grouping sets query, rollup query, and cube query using the columns Orderid*, Category, and Price collected. Finally, you will create an MQT named Total_sales_per_country using the country and total sales columns. After performing each task, you will take a screenshot of the SQL and the output rows and then name the screenshot.
 
 The design of the warehouse through the ERP tool in pgadmin is as following:
-![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/warehouse2.png)
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/all_files/warehouse2.png)
 
 After loading the data into db2 on IBM cloud, I solved the following tasks:
 
@@ -170,7 +170,7 @@ In this assignment, you will perform a couple of exercises with multiple tasks. 
 
 In the second exercise, you will create a data source in Cognos that points to the table in your IBM DB2 database. In the final exercise, you will create a dashboard by performing tasks such as creating a bar chart of Quarterly sales of mobile phones, a pie chart of category-wise sales of electronic goods, and a line chart of month-wise total sales for the year 2020. 
 
-![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/dashboard.PNG)
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/all_files/dashboard.PNG)
 
 To view the dashboard interactively on Cognos, visit the following link: https://eu-gb.dataplatform.cloud.ibm.com/dashboards/a0d06cf5-0f34-4e2f-8c26-5e05a797ccee/view/4f07c36439ea6fc355c1e2e407cb2e012c65215ae6bbd70a86837b495a677297a93d1492c82f4d5288150735fbbf110b9c
 
@@ -207,7 +207,7 @@ def insert_records(records):
         ibm_db.execute(stmt, row)
 ```
 Task 4 - Test the data synchronization: Run the program automation.py and test if the synchronization is happening as expected.
-![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/synchronization.jpg)
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/all_files/synchronization.jpg)
 
 The script is available in the repo as `automation.py`
 
@@ -281,7 +281,7 @@ Task 8 - Unpause the DAG.
 airflow dags unpause process_web_log
 ```
 Task 9 - Monitor the DAG from Airflow console.
-![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/Module%201/dag_runs.jpg)
+![](https://github.com/fadialsalti/data_engineering_capstone_project/blob/main/all_files/dag_runs.jpg)
 
 The script is available in the repo as `process_web_log.py`
 
